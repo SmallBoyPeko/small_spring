@@ -38,12 +38,7 @@ public class ApiTest {
     public void testCglib() {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(UserService.class);
-        enhancer.setCallback(new NoOp() {
-            @Override
-            public int hashCode() {
-                return super.hashCode();
-            }
-        });
+        enhancer.setCallback(NoOp.INSTANCE);
         Object obj = enhancer.create(new Class[]{String.class}, new Object[]{"小福哥"});
         System.out.println(obj);
     }
